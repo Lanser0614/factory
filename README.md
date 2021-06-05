@@ -1,3 +1,14 @@
+it is code example for factory with Relationship<br>
+Git clone url<br>
+composer install<br>
+env.example rename to .env<br>
+set correct database<br>
+php artisan migrate<br>
+php artisan db:seed<br>
+php artisan db:seed --class=PostSeeder <br>
+ php artisan db:seed --class=ImageSeeder
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
