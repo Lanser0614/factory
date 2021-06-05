@@ -1,11 +1,11 @@
-it is code example for factory with Relationship
-Git clone url
-composer install
-env.example rename to .env
-set correct database
-php artisan migrate
-php artisan db:seed
-php artisan db:seed --class=PostSeeder 
+it is code example for factory with Relationship<br>
+Git clone url<br>
+composer install<br>
+env.example rename to .env<br>
+set correct database<br>
+php artisan migrate<br>
+php artisan db:seed<br>
+php artisan db:seed --class=PostSeeder <br>
  php artisan db:seed --class=ImageSeeder
 
 
