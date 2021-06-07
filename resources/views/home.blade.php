@@ -25,9 +25,9 @@
 
                         <div class="form-group">
                             <label for="title">Image/file</label>
-                            <input type="file" name="images[]" class="form-control" multiple="">
+                            <input type="file" name="imageName[]" class="form-control" multiple="">
                             @if($errors->has('images'))
-                            <span class="help-block text-danger">{{ $errors->first('images') }}</span>
+                            <span class="help-block text-danger">{{ $errors->first('imageName') }}</span>
                             @endif
                         </div>
 

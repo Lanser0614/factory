@@ -29,21 +29,24 @@ class PostController extends Controller
     $post->user_id = $request->user()->id;
 	$post->save();
 
-	foreach ($request->file('images') as $image) {
-		$postImage = new Image;
-		$name = $image->getClientOriginalName();
-		$path = public_path('images/post/').$post->id.'/'.$name;
-		$image->move($path);
-		$postImage->post_id = $post->id;
-		$postImage->image_path = $path;
-		$postImage->save();
+    if($request->hasfile('imageName')){
+        
+	foreach ($request->file('imageName') as $image) {
+        $postImage = new Image;
+        $name = time().rand(1,100).'.'.$image->extension();
+               $image->move(public_path('files'), $name);
+               $postImage->imageName=$name;
+               $postImage->post_id = $post->id;
+               $postImage->save();
 	}
+}
 
     return back();
    }
 
    public function crud(){
-       $post = Post::with(['images'])->get();
-       return  view('crud', compact('post'));
+       $post = Post::all();
+       $img = Post::all();
+       return  view('crud', compact('post', 'img'));
    }
 }

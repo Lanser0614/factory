@@ -45,7 +45,11 @@
 							<td>{{$item->user_id}}</td>
 							<td>{{$item->title}}</td>
 							<td>{{$item->body}}</td>
-							<td>{{$item->images}}</td>
+                            
+							<td> @foreach ($item->images as $item2)
+                        <img src="{{ asset( 'files/'. $item2->imageName)  }}" width="100px">
+                                @endforeach</td>
+                            
 							<td>
 								<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
 								<a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
