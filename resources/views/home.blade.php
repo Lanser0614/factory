@@ -5,37 +5,46 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                   <h1 style="text-align: center"> {{ __('You are logged in!') }}</h1>
-                    <form method="POST" action="{{ route('store') }}">
-                        @csrf
-                        <div class="mb-3">
-                          <label for="exampleInputEmail1" class="form-label">Title</label>
-                          <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                          <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-                        </div>
-                        <div class="mb-3">
-                          <label for="exampleInputPassword1" class="form-label">Text</label>
-                          <input type="text" class="form-control" id="exampleInputPassword1" name="body">
-                        </div>
-                        <div class="mb-3 form-check">
-                          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                          <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                      </form>
+             
+                <div class="card-header">Create Post
+                    <a href="/crud">
+                        <button class="btn btn-secondary" >CRUD</button>
+                    </a>
                 </div>
-                
+              
+                <div class="card-body">
+                    <form method="post" action="{{route('store')}}" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" name="title" class="form-control" value="{{Request::old('title')}}">
+                            @if($errors->has('title'))
+                            <span class="help-block text-danger">{{ $errors->first('title') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="form-group">
+                            <label for="title">Image/file</label>
+                            <input type="file" name="images[]" class="form-control" multiple="">
+                            @if($errors->has('images'))
+                            <span class="help-block text-danger">{{ $errors->first('images') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="form-group">
+                            <label for="title">Body</label>
+                            <textarea name="body" class="form-control">{{Request::old('body')}}</textarea>
+                            @if($errors->has('body'))
+                            <span class="help-block text-danger">{{ $errors->first('body') }}</span>
+                            @endif
+                        </div>
+
+                        <div class="text-center">
+                            <button class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-         
         </div>
     </div>
 </div>
