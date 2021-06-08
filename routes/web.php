@@ -23,4 +23,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::post('post', [PostController::class, 'store'])->name('store');
 Route::get('/crud', [PostController::class, 'crud']);
 Route::get('edit/{id}', [PostController::class, 'edit']);
-Route::post('update', [PostController::class, 'update'])->name('update');
+Route::post('update', [PostController::class, 'update'])->name('Update');
+Route::get('delete/{id}', [PostController::class, 'destroy']);

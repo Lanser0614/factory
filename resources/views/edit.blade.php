@@ -13,11 +13,11 @@
                 </div>
               
                 <div class="card-body">
-                    <form method="post" action="{{ route('update') }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('Update') }}" enctype="multipart/form-data">
                         @csrf
 
 
-                        <input type="hidden" value="{{$post->id}}">
+                        <input type="hidden" name="id" value="{{$post->id}}">
                         
                         <div class="form-group">
                             <label for="title">Title</label>

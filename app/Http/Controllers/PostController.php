@@ -63,40 +63,36 @@ class PostController extends Controller
 
 
    public function update(Request $request){
-;
 
-
-
-
-    $title=$request->title;
-    $body=$request->body;
-
-   
 
     $post = Post::find($request->id);
-
-	$post->title = $title;
+    $post -> update([
+        'title' => request('title'),
+        'user_id' => request('user_id'),
+        'body' => request('body'),
+    ]);
     
-	$post->body = $body;
-
-    $post->user_id = $request->user()->id;
-
-	$post->save();
-
-
-    // if($request->hasfile('imageName')){
+    if($request->hasfile('imageName')){
         
-    //     foreach ($request->file('imageName') as $image) {
-    //         $postImage = Image::find($request->id);
-    //         $name = time().rand(1,100).'.'.$image->extension();
-    //                $image->move(public_path('files'), $name);
-    //                $postImage->imageName=$name;
-    //                $postImage->post_id = $post->id;
-    //                $postImage->save();
-    //     }
-    // }
+        foreach ($request->file('imageName') as $image) {
+            $postImage = new Image;
+            $name = time().rand(1,100).'.'.$image->extension();
+                   $image->move(public_path('files'), $name);
+                   $postImage->imageName=$name;
+                   $postImage->post_id = $post->id;
+                   $postImage->save();
+        }
+    }
 
-    // return redirect('crud');
+    
 
+    return  redirect()->route('home');
+   }
+
+   public function destroy($id){
+       $post = Post::find($id);
+     
+       $post->delete();
+       return back();
    }
 }
